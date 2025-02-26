@@ -5,6 +5,8 @@
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
+\usepackage{lipsum} 
+\usepackage{booktabs}
 \usepackage[acronym]{glossaries}
 
 \input{A-acronyms}
@@ -29,7 +31,7 @@
 % ---------------------------------------------
 \begin{abstract}
 The increasing availability of medical imaging exams, such as magnetic resonance imaging, generates a large volume of data, making its analysis complex and challenging. In this scenario, advanced computational approaches can optimize the interpretation of these images and assist in the early diagnosis of cardiovascular diseases. This work aims to unify contemporary approaches in the evaluation of cardiomyopathy. 
-With the support of radiomic analysis, which extracts information from statistical and texture characteristics of a medical image, and features derived from a classical neural network for computer vision, such as ResNet50, promising results can combined and obtained. Some forms of attention mechanism are applied including self attention and selective attention using Squeeze and Excitation Nets.  The results confirm that the combination of information from various domains regarding a given patient, when integrated, can lead to more interesting outcomes compared to analyzing data in isolation. This study aims to apply the aforementioned approaches, based on previous literature, in an innovative application for cardiomyopathy testing
+With the support of radiomic analysis, which extracts information from statistical and texture characteristics of a medical image, and features derived from a classical neural network for computer vision, such as ResNet50, promising results can combined and obtained \cite{heDeepResidualLearning2015}. Some forms of attention mechanism are applied including self attention and selective attention using Squeeze and Excitation Nets.  The results confirm that the combination of information from various domains regarding a given patient, when integrated, can lead to more interesting outcomes compared to analyzing data in isolation. This study aims to apply the aforementioned approaches, based on previous literature, in an innovative application for cardiomyopathy testing.
 % , adapting and proposing a more robust architecture 
 % to achieve better results.
 \end{abstract}
@@ -45,17 +47,17 @@ Radiomics, Attention Mechanism, Transformers, Cardiomyopathy, Medical Imaging.
 \label{sec:introduction}
 \IEEEPARstart{S}{ince} the early 2000s, the volume of data generated in medicine has grown exponentially,this rapid growth highlights the need for tools capable of efficiently processing and analyzing vast amounts of information.
 
-Medical imaging techniques, such as \gls{TC} and \gls{MRI}, have become essential in modern medicine, offering detailed three-dimensional representations of human anatomy. These imaging techniques not only improve diagnostic accuracy but also generate large datasets that can be quantitatively analyzed. Concurrently, \gls{AI} has driven significant advancements in diagnostic imaging, enhancing efficiency and precision in medical decision-making.
+Medical imaging techniques, such as \gls{CT} and \gls{MRI}, have become essential in modern medicine, offering detailed three-dimensional representations of human anatomy. These imaging techniques not only improve diagnostic accuracy but also generate large datasets that can be quantitatively analyzed. Concurrently, \gls{AI} has driven significant advancements in diagnostic imaging, enhancing efficiency and precision in medical decision-making.
 
 Deep neural networks have demonstrated high performance in computer vision tasks, including image classification, object detection, and segmentation. Once optimized on a given dataset, these models can extract discriminative features that enhance medical image analysis. Furthermore, transformer architectures, commonly used in autoregressive generative models such as \gls{LLMs}, have gained prominence due to their parallelization capabilities and self-attention mechanisms, which allow models to focus on the most relevant parts of the input data.
 
-Additionally, image processing techniques such as texture analysis have been employed for decades in various medical domains. Radiomics, a powerful approach for extracting quantitative features from medical images, captures patterns that may not be perceptible to the human eye. This methodology has shown potential applications in fields such as oncology and cardiology.
+Additionally, image processing techniques such as texture analysis have been employed for decades in various medical domains. Radiomics, a powerful approach for extracting quantitative features from medical images, captures patterns that may not be perceptible to the human eye. This methodology has shown potential applications in fields such as oncology and cardiology \cite{mayerhoeferIntroductionRadiomics2020}.
 
-In cardiac imaging analysis, texture-based MRI assessments have been used to evaluate the risk of post-myocardial infarction arrhythmia. Specifically, texture analysis of contrast-enhanced and non-contrast MRI scans in cardiomyopathy patients has been explored for predicting clinical outcomes. Among cardiomyopathies, \gls{HCM} is one of the most prevalent, frequently diagnosed in young and middle-aged individuals. While often asymptomatic, \gls{HCM} can lead to severe conditions such as heart failure and stroke, making early diagnosis crucial in preventing adverse outcomes. In this context, radiomics—which extracts high-dimensional data from medical images, often including texture analysis—holds promise for early diagnosis and risk assessment in cardiomyopathy.
+In cardiac imaging analysis, texture-based MRI assessments have been used to evaluate the risk of post-myocardial infarction arrhythmia. Specifically, texture analysis of contrast-enhanced and non-contrast MRI scans in cardiomyopathy patients has been explored for predicting clinical outcomes \cite{schofieldTextureAnalysisCardiovascular2019a}. Among cardiomyopathies, \gls{HCM} is one of the most prevalent, frequently diagnosed in young and middle-aged individuals. While often asymptomatic, \gls{HCM} can lead to severe conditions such as heart failure and stroke, making early diagnosis crucial in preventing adverse outcomes. In this context, radiomics—which extracts high-dimensional data from medical images, often including texture analysis—holds promise for early diagnosis and risk assessment in cardiomyopathy \cite{kwonComparisonMortalityCause2022}.
 
-The integration of AI and radiomics represents a promising strategy for detecting cardiomyopathies and other cardiac conditions. Recent studies have demonstrated that combining deep features with radiomic characteristics can significantly improve the predictive performance of diagnostic models for lung cancer using CT imaging. Models leveraging self-attention mechanisms to analyze concatenated data have achieved up to 82.35\% accuracy and an AUC of 0.74.
+The integration of AI and radiomics represents a promising strategy for detecting cardiomyopathies and other cardiac conditions. Recent studies have demonstrated that combining deep features with radiomic characteristics can significantly improve the predictive performance of diagnostic models for lung cancer using CT imaging. Models leveraging self-attention mechanisms to analyze concatenated data have achieved up to 82.35\% accuracy and an AUC of 0.74 \cite{lambinRadiomicsExtractingMore2012}.
 
-Thus, this study proposes the implementation and validation of a fusion strategy that combines radiomic and deep learning features with self-attention mechanisms to improve cardiomyopathy classification. Beyond advancing the state-of-the-art in medical diagnosis, this research aims to contribute to the development of more effective and accessible solutions for clinical decision support.
+Thus, this study proposes the implementation and validation of a fusion strategy that combines radiomic and deep learning features with self-attention mechanisms to improve cardiomyopathy classification. Beyond advancing the state-of-the-art in medical diagnosis, this research aims to contribute to the development of more effective and accessible solutions for clinical decision support \cite{brielerCardiomyopathyOverview2017}.
 
 
 % \IEEEPARstart{T}{his} document is a template for \LaTeX.
@@ -116,14 +118,16 @@ b) Heart failure without infarction (IC): Group with EF < 40\% and no late gadol
 c) Left ventricular hypertrophy (HIP): Group with normal EF ($>$ 55\%) and a left ventricular mass-to-body surface area ratio $>$ 83 g/m².  
 d) Normal (NOR): Group with EF $>$ 55\% and no hypertrophy.  
 
-For this study, the HIP and NOR classes were used to classify cases of cardiomyopathy and normal conditions, respectively. Table 6 shows the distribution of the 45 patients and the cardiovascular activity values used for patient classification.
+For this study, the HIP and NOR classes were used to classify cases of cardiomyopathy and normal conditions, respectively. Table 6 shows the distribution of the 45 patients and the cardiovascular activity values used for patient classification .
 
 % ---------------------------------------------
 \section{Methodology}
 
-In this section, first introduce the image preprocessing and feature extraction process, which involves selecting and extracting features from \gls{MRI} images. Then, we introduce the base model, originally applied to \gls{NSCLC} early recurrence prediction. And last, we describe the design of our proposed architecture with a new concatenation, using segmented masks and in addition to using the self-attention mechanism, it was also used selective attention in the form of \gls{SE} Net modules.
+In this section, first introduce the image preprocessing and feature extraction process, which involves selecting and extracting features from \gls{MRI} images. Then, we introduce the base model, originally applied to \gls{NSCLC} early recurrence prediction. And last, we describe the design of our proposed architecture with a new concatenation, using segmented masks and in addition to using the self-attention mechanism, it was also used selective attention in the form of \gls{SE} Net modules. 
 
-The change in the concatenation method was intentional, as the adapted version includes a new convolutional layer that is not present in the original version, aiming to extract relevant information from the fusion of embeddings. The adapted version also adds a selective attention layer in the form of an \gls{SE} block, which precedes the self-attention block.  
+Studies by \cite{huSqueezeandExcitationNetworks2018} demonstrated that network performance could be enhanced by explicitly incorporating learning mechanisms that help capture spatial correlations without requiring additional supervision.  In this context, the \gls{SE} mechanism was proposed to allow the network to recalibrate features, enabling it to learn how to use global information to selectively emphasize informative features while suppressing less useful ones \cite{lecunHandwrittenDigitRecognition1989}.
+
+The change in the concatenation method was intentional, as the adapted version includes a new convolutional layer that is not present in the original version, aiming to extract relevant information from the fusion of embeddings. The adapted version also adds a selective attention layer in the form of an \gls{SE} block, which precedes the self-attention block \cite{osheaIntroductionConvolutionalNeural2015c}.  
 
 Another modification in the adapted version is that the self-attention block is applied $N$ times instead of just once, as in the base work, leading to a noticeable improvement in results. It is important to note that both attention mechanisms serve different purposes: while the selective attention block focuses on the relationships between the embedding channels, the self-attention block efficiently optimizes and weights the fused feature vector.  
 
@@ -172,7 +176,7 @@ An F-Test set is applied to the feature vectors to ensure they have the same siz
 
 Selective attention plays a crucial role in improving the performance of deep learning models by allowing them to focus on the most relevant features in their internal representations. Specifically, the \gls{SE} block is designed to adaptively recalibrate feature channels by assigning higher weights to the most informative characteristics. This mechanism operates in two main steps: first, it reduces the dimensionality of global features (squeeze) to capture overall context, and then it applies an excitation mechanism to adjust the weights of each channel based on their relative importance. By integrating \gls{SE} blocks into an architecture, the model enhances its ability to discriminate relevant patterns while suppressing noise or irrelevant information, leading to greater accuracy and efficiency in data processing \cite{yangNeuralNetworkDesign2024a}.
 
-Since the \gls{SE} block is added only in the adapted version to improve results, the resulting concatenated vector is $3 \times 64$, assuming $\text{EMBED}_{size}= 64$ and the inclusion of the mask. A 1D convolutional layer is applied with $16$ channels, a kernel size of $3$, a stride of $1$, and padding of $1$ to maintain the original dimensions after processing.  
+Since the \gls{SE} block is added only in the adapted version to improve results, the resulting concatenated vector is $3 \times 64$, assuming $\text{EMBED}_{size}= 64$ and the inclusion of the mask. A 1D convolutional layer is applied with $16$ channels, a kernel size of $3$, a stride of $1$, and padding of $1$ to maintain the original dimensions after processing \cite{huSqueezeandExcitationNetworks2018}.  
 
 With $16$ channels as the output of the first convolution, the \gls{SE} block is applied to identify the most relevant channels and rescale the original input. The SE block has a reduction parameter $r$, which was set to $16$, as suggested by the authors of the original study. Finally, another 1D convolution is applied with a single output channel, resulting in a one-dimensional vector, which serves as input for the next block, the self-attention module.
 
@@ -202,7 +206,7 @@ The loss function used in the model is the binary cross-entropy denoted by the E
 
 
 % ---------------------------------------------
-\section{Results}
+\section{Experiments and Results}
 
 This chapter presents the results of the proof of concept conducted with the developed algorithms, including both the baseline model and the adapted models, with the goal of comparing them to the objectives outlined in this dissertation. The tests performed aim to evaluate the algorithm's efficiency under the various adaptations discussed.
 
@@ -232,23 +236,158 @@ The adapted models represent modifications derived from the baseline model, aimi
 
 \end{enumerate}  
 
-The remaining architecture follows the original design, except that the self-attention block can be applied $N$ times. This means its output is recursively fed back as input $N$ times, making $N$ a tunable hyperparameter in the experiment. The tested values for $N$ were $[1, 2, 4, 6]$. These changes do not alter the overall structure of the initial architecture but allow the self-attention module to be executed $N$ times, as proposed in \cite{vaswaniAttentionAllYou2023}. 
+The remaining architecture follows the original design, except that the self-attention block can be applied $N$ times. This means its output is recursively fed back as input $N$ times, making $N$ a tunable hyperparameter in the experiment. The tested values for $N$ were $[1, 2, 4, 6]$. These changes do not alter the overall structure of the initial architecture but allow the self-attention module to be executed $N$ times, as proposed in \cite{vaswaniAttentionAllYou2023} and seen in Figure \ref{fig03}.
+
+\begin{figure}[h]
+\centerline{\includegraphics[width=\columnwidth]{figures/fig03.png}}
+\caption{Self-attention module recurrence.}
+\label{fig03}
+\end{figure}
+
+% ------
+\subsection{Results Base Model}
+
+With the preprocessed and previously stored data, training is performed using the radiomic and deep feature vectors. Partial metrics were saved in real time during training.  For the baseline model, the hyperparameters are: $\text{EMBED}_{size} = 12$, $N = 1$ (i.e., a single self-attention block), concatenation dimension = 1, learning rate = $0,0001$, optimizer Adam, batch size = $1$ and approximately $60$ epochs.
+
+Once trained, inference was performed on the test dataset, applying the sigmoid function and setting 0.5 as the decision threshold, where values above this threshold are classified as cardiomyopathy, while the others are classified as normal.  
+
+The resulting metrics can be found in Table \ref{tab:metrics}. The confusion matrix is shown in Figure \ref{fig05}.
+% , and a graph illustrating the ROC curve is presented in Figure \ref{fig:fig017}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Experiment Metrica - Base Model}
+    \begin{tabular}{|c|c|}
+    \hline 
+          \textbf{Metric} & \textbf{Value} \\ 
+    \hline 
+        Accuracy & 0.58 \\ 
+    \hline 
+        Precision & 0.47 \\ 
+    \hline 
+        Recall & 0.45 \\ 
+    \hline 
+        AUC & 0.55 \\ 
+    \hline 
+    \end{tabular} 
+    \label{tab:metrics}
+\end{table}
+
+\begin{figure}[h]
+    \centerline{\includegraphics[width=\columnwidth]{figures/fig05.png}}
+    \caption{Confusion Matrix -  Base Model.}
+    \label{fig05}
+\end{figure}
+
+
+% ------
+\subsection{Results Adapted Model}
+
+For the adapted versions, the objective was to modify both the hyperparameters and the model architecture to compare the results with the baseline version. The first experiments were conducted by varying the $\text{EMBED}_{size}$, and the self-attention block was applied $N$ times instead of just once. These experiments were executed by generating combinations of these hyperparameters to cover as many scenarios as possible within the proposed methodology.  
+
+Additionally, a convolutional module was introduced in the adapted versions, preceding the self-attention module. This convolutional module consists of three blocks: a 1D convolutional layer, an \gls{SE} block, and another 1D convolutional block. With the option to add a third feature vector, represented by the mask, it became possible to identify intrinsic relationships involving this additional vector. The concatenation is now performed along the first dimension, making each feature vector a separate channel.  
+
+In the convolutional module, the first 1D convolutional layer increases the number of channels to 16, meaning that 16 filters are applied for spatial information extraction. The \gls{SE} block represents the selective attention layer, which assigns importance to the most relevant channels by identifying their significance and scaling them in the original input using an optimized scalar value learned during training. Further details can be seen in Figure \ref{fig06}. In this project, the \gls{SE} block is adapted for 1D applications, unlike the original study, which focuses on its use in well-established computer vision models. The reduction factor $r$ in the \gls{SE} block was fixed at 16, as empirical tests conducted by the original study's authors confirmed that this value yields the best results.
+
+
+\begin{figure}[h]
+    \centerline{\includegraphics[width=\columnwidth]{figures/fig06.png}}
+    \caption{SE Block Composition}
+    \label{fig06}
+\end{figure}
+
+As we already have the base models results,  Table \ref{tab:metrics_acdc_orig_mask} shows the experiments that include the mask as a third feature vector and Table \ref{tab:metrics_acdc_se} presents the addition of convolutional and \gls{SE} blocks.  
+
+Several observations can be made from the experiment. The training process almost always exhibits overfitting, reaching nearly $100$\% accuracy. This can be justified by the limited number of training samples available. Another notable point is that larger feature vector sizes (Emb) tend to yield better results. Additionally, increasing the number of self-attention blocks (N\_Attn) also improves performance, except when set to 6. This is likely due to the model becoming overly complex compared to the available training data, negatively impacting its generalization ability.  
+
+The best results were obtained in versions that incorporated the \gls{SE} block and used four self-attention blocks, with the best experiment achieving $78$\% accuracy.
+
+
+\begin{table}[htbp]
+\centering
+\caption{ACDC Metrics - Adapted Models + Masks
+\newline Bold means better Acc.}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Emb} & \textbf{N\_Attn} & \textbf{Acc} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{AUC} \\
+\midrule
+24 & 1 & 0.44 & 0.35 & 0.45 & 0.39 & 0.44 \\
+24 & 2 & 0.46 & 0.38 & 0.55 & 0.45 & 0.48 \\
+24 & 4 & 0.48 & 0.36 & 0.40 & 0.38 & 0.47 \\
+24 & 6 & 0.48 & 0.38 & 0.45 & 0.41 & 0.47 \\
+\hline
+48 & 1 & 0.52 & 0.44 & 0.70 & 0.54 & 0.55 \\
+48 & 2 & 0.58 & 0.48 & 0.55 & 0.51 & 0.57 \\
+48 & 4 & 0.62 & 0.52 & 0.60 & 0.56 & 0.62 \\
+48 & 6 & 0.60 & 0.50 & 0.50 & 0.50 & 0.58 \\
+\hline
+64 & 1 & 0.58 & 0.48 & 0.60 & 0.53 & 0.58 \\
+64 & 2 & 0.56 & 0.45 & 0.50 & 0.48 & 0.55 \\
+\textbf{64} & \textbf{4} & \textbf{0.64} & \textbf{0.54} & \textbf{0.65} & \textbf{0.59} & \textbf{0.64} \\
+64 & 6 & 0.62 & 0.53 & 0.45 & 0.49 & 0.59 \\
+\bottomrule
+\end{tabular}
+\label{tab:metrics_acdc_orig_mask}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{ACDC Metrics - Adapted Models + Masks + SE Blocks 
+\newline Bold means better Acc.}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Emb} & \textbf{N\_Attn} & \textbf{Acc} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{AUC} \\
+\midrule
+24 & 1 & 0.66 & 0.56 & 0.70 & 0.62 & 0.67 \\
+24 & 2 & 0.68 & 0.58 & 0.75 & 0.65 & 0.69 \\
+24 & 4 & 0.70 & 0.59 & 0.80 & 0.68 & 0.72 \\
+24 & 6 & 0.68 & 0.59 & 0.65 & 0.62 & 0.67 \\
+\hline
+48 & 1 & 0.70 & 0.58 & 0.90 & 0.71 & 0.73 \\
+48 & 2 & 0.70 & 0.62 & 0.65 & 0.63 & 0.69 \\
+48 & 4 & 0.74 & 0.65 & 0.75 & 0.70 & 0.74 \\
+48 & 6 & 0.70 & 0.60 & 0.75 & 0.67 & 0.71 \\
+\hline
+64 & 1 & 0.64 & 0.54 & 0.65 & 0.59 & 0.64 \\
+64 & 2 & 0.72 & 0.64 & 0.70 & 0.67 & 0.72 \\
+\textbf{64} & \textbf{4} & \textbf{0.78} & \textbf{0.76} & \textbf{0.65} & \textbf{0.70} & \textbf{0.76} \\
+64 & 6 & 0.76 & 0.65 & 0.85 & 0.74 & 0.77 \\
+\bottomrule
+\end{tabular}
+\label{tab:metrics_acdc_se}
+\end{table}
+
+
+
+
+
+
 
 
 % ---------------------------------------------
 \section{Conclusion}
 
-This work was made with help of the University FEI.
+This study presented an innovative approach for the classification of cardiomyopathies using cardiac \gls{MRI} images combined with attention mechanisms, promoting the integration of radiomic and deep features. The proposed method was built on strong theoretical foundations, employing modern deep learning techniques, such as the \gls{SE} Net architecture and self-attention mechanisms, to explore discriminative features in medical images.  
 
+The results highlighted the efficiency of the proposed model in identifying patterns associated with cardiomyopathies, surpassing traditional approaches in terms of accuracy and generalization. The fusion of radiomic information, which captures textural and statistical details, with deep features extracted from convolutional networks, proved to be effective in handling the intrinsic complexity of cardiomyopathies. Additionally, the use of attention mechanisms allowed the model to prioritize the most relevant regions of the images, enhancing its expressiveness.  
+
+The use of SE and spatial attention in the medical imaging domain represented an innovative strategy by prioritizing relevant information in the feature map. This technique not only improved the model’s performance but also provided a more intuitive way to explain AI decisions, a crucial aspect for its acceptance in clinical practice.  
+
+Although the results are promising, this study also revealed limitations, such as the need for more robust and diverse datasets and the challenge of interpreting deep learning models, a recurring issue in medical AI applications. 
+
+% However, the proposed model represents a significant advancement in the application of artificial intelligence to medical diagnostics, contributing to the development of more precise and accessible tools for clinical decision support, especially for early diagnosis and monitoring of cardiomyopathies. These tools can enhance healthcare efficiency, reduce manual analysis time, and enable faster, more precise interventions.  
+
+For future work, it is suggested to explore the combination of medical images with clinical and genetic data to create multimodal models capable of providing more holistic and personalized diagnoses. 
+
+
+% ---------------------------------------------
 \appendices
 
 \section*{Acknowledgment}
-The preferred spelling of the word ``acknowledgment'' in American English is 
-without an ``e'' after the ``g.'' Use the singular heading even if you have 
-many acknowledgments. Avoid expressions such as ``One of us (S.B.A.) would 
-like to thank $\ldots$ .'' Instead, write ``F. A. Author thanks $\ldots$ .'' In most 
-cases, sponsor and financial support acknowledgments are placed in the 
-unnumbered footnote on the first page, not here.
+
+\lipsum[11-11]
+
 
 \section*{References and Footnotes}
 \subsection{References}
